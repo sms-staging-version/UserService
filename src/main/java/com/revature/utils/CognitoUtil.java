@@ -26,8 +26,8 @@ import com.revature.services.UserService;
 @Component
 public class CognitoUtil {
 
-	@Value("${spring.profiles}")
-	private String stage;
+	//@Value("${spring.profiles}")
+	private String stage = "dev";
 
 	private Logger logger = Logger.getRootLogger();
 

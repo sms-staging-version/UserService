@@ -4,7 +4,7 @@ logging:
       hibernate: INFO
       springframework:
         web: DEBUG
-    root: ALL
+    root: warn
 cognito:
   url: ${COGNITO_URL}
     
@@ -14,29 +14,42 @@ spring:
   application:
   
     name: user-service
-  
   datasource:
-    driverClassName: org.postgresql.Driver
-    initialization-mode: NEVER
-    password: ${DB_PASSWORD}
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    
+   driver-class-name: org.h2.Driver
+   platform: h2
+   url: jdbc:h2:mem:testDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+   username: sa
+   password:
+ # datasource:
+  #  driverClassName: org.postgresql.Driver
+   # initialization-mode: NEVER
+   # password: ${DB_PASSWORD}
+   # url: ${DB_URL}
+   # username: ${DB_USERNAME}
+  h2:
+    console:
+      enabled: true 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        default_schema: ${DB_SCHEMA}
+    database-platform: org.hibernate.dialect.H2Dialect
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+   # generate-ddl: false
+   # hibernate:
+   #   ddl-auto: none
+   # properties:
+    #  hibernate:
+     #   default_schema: ${DB_SCHEMA}
     show-sql: false
----
-spring:
-  profiles: dev    
+  main:
+   allow-bean-definition-overriding: true
 
 server:
   port: 8090
+
+---
+spring:
+  profiles: dev    
+  
+
 
 eureka:
   client:
@@ -63,5 +76,5 @@ ribbon:
     
 user-service:
   ribbon:
-    listOfServers: ${GATEWAY_URL}
+  #  listOfServers: ${GATEWAY_URL}
     
