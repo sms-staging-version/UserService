@@ -4,64 +4,81 @@ logging:
       hibernate: INFO
       springframework:
         web: DEBUG
-    root: ALL
+    root: warn
+    
+---
+
 cognito:
   url: ${COGNITO_URL}
+  key: ${COGNITO_KEY}
     
 spring:
-  profiles:
-    active: ${DEPLOYMENT_STAGE}
+  profiles: 
+    active: dev #${DEPLOYMENT_STAGE}
   application:
-  
     name: user-service
-  
+  main:
+    allow-bean-definition-overriding: true
   datasource:
-    driverClassName: org.postgresql.Driver
-    initialization-mode: NEVER
-    password: ${DB_PASSWORD}
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    
+   driver-class-name: org.h2.Driver
+   platform: h2
+   url: jdbc:h2:mem:testDB;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;
+   username: sa
+   password:
+ # datasource:
+  #  driverClassName: org.postgresql.Driver
+   # initialization-mode: NEVER
+   # password: ${DB_PASSWORD}
+   # url: ${DB_URL}
+   # username: ${DB_USERNAME}
+  h2:
+    console:
+      enabled: true 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
-    properties:
-      hibernate:
-        default_schema: ${DB_SCHEMA}
+    database-platform: org.hibernate.dialect.H2Dialect
+    #database-platform: org.hibernate.dialect.PostgreSQLDialect
+   # generate-ddl: false
+   # hibernate:
+   #   ddl-auto: none
+   # properties:
+    #  hibernate:
+     #   default_schema: ${DB_SCHEMA}
     show-sql: false
----
-spring:
-  profiles: dev    
+
 
 server:
   port: 8090
 
+---
+spring:
+  profiles: dev    
+  
+
+
 eureka:
   client:
     service-url:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8888}/eureka/
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
   instance:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
     
----
-spring:
-  profiles: prod
+#---
+#spring:
+#  profiles: prod
 
-server:
-  port: 5000
+#server:
+#  port: 5000
   
-eureka:
-  client:
-    enabled: false
+#eureka:
+ # client:
+ #   enabled: false
     
-ribbon:
-  eureka: 
-    enabled: false
+#ribbon:
+#  eureka: 
+#    enabled: false
     
-user-service:
-  ribbon:
-    listOfServers: ${GATEWAY_URL}
+#user-service:
+#  ribbon:
+  #  listOfServers: ${GATEWAY_URL}
     

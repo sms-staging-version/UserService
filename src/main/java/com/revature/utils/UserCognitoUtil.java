@@ -24,10 +24,10 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 
 @Component
-public class CognitoUtil {
+public class UserCognitoUtil {
 
-	@Value("${spring.profiles}")
-	private String stage;
+	//@Value("${spring.profiles}")
+	private String stage = "dev";
 
 	private Logger logger = Logger.getRootLogger();
 

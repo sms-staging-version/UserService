@@ -25,8 +25,8 @@ public class CognitoRestTemplate {
 	private final String registerUrl = "/cognito/users";
 	private final String authUrl = "/cognito/auth";
 	
-	@Value("${spring.profiles}")
-	private String stage;
+//	@Value("${spring.profiles}")
+//	private String stage;
 
 
 	
