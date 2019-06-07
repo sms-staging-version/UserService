@@ -13,17 +13,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.revature.annotations.CognitoAuth;
-import com.revature.utils.CognitoUtil;
+import com.revature.utils.UserCognitoUtil;
 
 @Aspect
 @Component
-public class CognitoAspect {
+public class UserCognitoAspect {
 
 	//@Value("${spring.profiles}")
 	private String stage = "dev";
 
 	@Autowired
-	private CognitoUtil cUtil;
+	private UserCognitoUtil cUtil;
 
 	@Pointcut(" @annotation(ca)")
 	public void annotationPointCutDefinition(CognitoAuth ca) {

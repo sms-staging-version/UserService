@@ -5,15 +5,20 @@ logging:
       springframework:
         web: DEBUG
     root: warn
+    
+---
+
 cognito:
   url: ${COGNITO_URL}
+  key: ${COGNITO_KEY}
     
 spring:
-  profiles:
-    active: ${DEPLOYMENT_STAGE}
+  profiles: 
+    active: dev #${DEPLOYMENT_STAGE}
   application:
-  
     name: user-service
+  main:
+    allow-bean-definition-overriding: true
   datasource:
    driver-class-name: org.h2.Driver
    platform: h2
@@ -39,8 +44,7 @@ spring:
     #  hibernate:
      #   default_schema: ${DB_SCHEMA}
     show-sql: false
-  main:
-   allow-bean-definition-overriding: true
+
 
 server:
   port: 8090
@@ -54,27 +58,27 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: ${DISCOVERY_URL:http://localhost:8888}/eureka/
+      defaultZone: ${DISCOVERY_URL:http://localhost:8761}/eureka/
   instance:
     lease-renewal-interval-in-seconds: 1
     lease-expiration-duration-in-seconds: 2
     
----
-spring:
-  profiles: prod
+#---
+#spring:
+#  profiles: prod
 
-server:
-  port: 5000
+#server:
+#  port: 5000
   
-eureka:
-  client:
-    enabled: false
+#eureka:
+ # client:
+ #   enabled: false
     
-ribbon:
-  eureka: 
-    enabled: false
+#ribbon:
+#  eureka: 
+#    enabled: false
     
-user-service:
-  ribbon:
+#user-service:
+#  ribbon:
   #  listOfServers: ${GATEWAY_URL}
     

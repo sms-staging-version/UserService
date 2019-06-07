@@ -24,7 +24,7 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 
 @Component
-public class CognitoUtil {
+public class UserCognitoUtil {
 
 	//@Value("${spring.profiles}")
 	private String stage = "dev";

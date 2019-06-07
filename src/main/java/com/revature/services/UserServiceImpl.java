@@ -7,12 +7,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.cognito.utils.CognitoUtil;
 import com.revature.dto.CohortUserListOutputDto;
 import com.revature.dto.UserListInputDto;
 import com.revature.models.Cohort;
 import com.revature.models.User;
 import com.revature.repos.UserRepo;
-import com.revature.utils.CognitoUtil;
+import com.revature.utils.UserCognitoUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,13 +21,13 @@ public class UserServiceImpl implements UserService {
 	UserRepo userRepo;
 
 	@Autowired
-	CognitoUtil cognitoUtil;
+	UserCognitoUtil cognitoUtil;
 
 	@Autowired
 	CohortService cohortService;
 
 	@Autowired
-	CognitoUtil cUtil;
+	UserCognitoUtil cUtil;
 
 	Logger log = Logger.getRootLogger();
 

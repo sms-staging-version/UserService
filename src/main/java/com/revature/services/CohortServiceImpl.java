@@ -12,7 +12,7 @@ import com.revature.dto.CohortUserListOutputDto;
 import com.revature.models.Cohort;
 import com.revature.models.User;
 import com.revature.repos.CohortRepo;
-import com.revature.utils.CognitoUtil;
+import com.revature.utils.UserCognitoUtil;
 
 @Service
 public class CohortServiceImpl implements CohortService {
@@ -24,7 +24,7 @@ public class CohortServiceImpl implements CohortService {
 	UserService userService;
 
 	@Autowired
-	CognitoUtil cognitoUtil;
+	UserCognitoUtil cognitoUtil;
 
 	Logger log = Logger.getRootLogger();
 
