@@ -21,8 +21,9 @@ import com.revature.dto.CohortUserListOutputDto;
 import com.revature.models.Cohort;
 import com.revature.services.CohortService;
 import com.revature.services.UserService;
-import com.revature.utils.CognitoUtil;
+
 import com.revature.utils.ResponseEntityUtil;
+import com.revature.utils.UserCognitoUtil;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -36,7 +37,7 @@ public class CohortController {
 	UserService userService;
 
 	@Autowired
-	CognitoUtil cognitoUtil;
+	UserCognitoUtil cognitoUtil;
 	
 	@Autowired
 	ResponseEntityUtil responseEntityUtil;
